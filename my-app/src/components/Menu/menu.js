@@ -1,73 +1,67 @@
-import React, { Component } from 'react';
-import {Route, Link} from 'react-router-dom';
+import React, { useState } from 'react';
+import {
+  Collapse,
+  Navbar,
+  NavbarToggler,
+  NavbarBrand,
+  Nav,
+  NavItem,
+  NavLink,
+  UncontrolledDropdown,
+  DropdownToggle,
+  DropdownMenu,
+  DropdownItem,
+  NavbarText
+} from 'reactstrap';
 
-const menus =[
-    {
-        name: 'Home',
-        to:'/',
-        exact: true
-    },
-    {
-        name: 'Lecturer Maneger',
-        to:'/lecturers',
-        exact: false
-    }
-]
+const Example = (props) => {
+  const [isOpen, setIsOpen] = useState(false);
 
-const MenuLink = ({ label, to, activeOnlyWhenExact}) =>{
-    return (
-        <Route
-            path = {to}
-            exact = {activeOnlyWhenExact}
-            children = { ({match}) =>{
-                var active = match ? 'active' : '';
-                return (
-                    <li className = {active + ` nav-link` }  >
-                        <Link to={to}>
-                            {label}
-                        </Link>
-                    </li>
-                );
-            }
+  const toggle = () => setIsOpen(!isOpen);
 
-            }
-            
-        >
-
-        </Route>
-    )
-       
+  return (
+    <div>
+      <Navbar color="light" light expand="md">
+        <NavbarBrand href="/">Blog</NavbarBrand>
+        <NavbarToggler onClick={toggle} />
+        <Collapse isOpen={isOpen} navbar>
+          <Nav className="mr-auto" navbar>
+            <NavItem>
+              <NavLink href="/home">Home</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="/lecturers">Lecturers</NavLink>
+            </NavItem>
+            <NavItem>
+              <NavLink href="https://www.facebook.com/xoa81/">Facebook</NavLink>
+            </NavItem>
+            <UncontrolledDropdown nav inNavbar>
+              <DropdownToggle nav caret>
+                Options
+              </DropdownToggle>
+              <DropdownMenu right>
+                <DropdownItem>
+                    Home
+                </DropdownItem>
+                <DropdownItem>
+                    Facebook
+                </DropdownItem>
+                <DropdownItem>
+                  Lecturers
+                </DropdownItem>
+                <DropdownItem divider />
+                <DropdownItem>
+                  Reset
+                </DropdownItem>
+              </DropdownMenu>
+            </UncontrolledDropdown>
+          </Nav>
+        </Collapse>
+      </Navbar>
+      
+    </div>
+    
+  );
 }
 
-class Menu extends Component{
-    render(){
-        return (
-            <div>
-                <nav className="nav nav-tabs nav-stacked">
-                    {this.showMenus(menus)}
-                </nav>
-            </div>
-          );
-    }
-    showMenus = (menus) =>{
-        var result =null;
-        if(menus.length > 0){
-            result = menus.map((menu,index) => {
-                return (
-                    <MenuLink
-                        key = {index}
-                        label = {menu.name}
-                        to = {menu.to}
-                        activeOnlyWhenExact = {menu.exact}
-                    >
-
-                    </MenuLink>
-                )
-            })
-        }
-        return result;
-    }
-}
-
-
-export default Menu;
+export default Example;

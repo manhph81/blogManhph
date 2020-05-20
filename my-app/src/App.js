@@ -3,16 +3,24 @@ import './App.css';
 import Menu from './components/Menu/menu'
 import routes from './routes'
 import {Switch, Route, BrowserRouter as Router} from 'react-router-dom';
+import FooterCpn from './components/Footer/footer';
 
 class App extends Component {
   render() {
     return (
       <Router>
         <div>
-          <Menu></Menu>
-          <div className="container">
+          <div className="navbar">
+            <Menu></Menu>
+          </div>
+          <div className=".container-fluid">
               <div className="row">
                 {this.showContentMenu(routes)}
+              </div>
+          </div>
+          <div className=".container-fluid footer">
+              <div className="row">
+                <FooterCpn></FooterCpn>
               </div>
           </div>
         </div>

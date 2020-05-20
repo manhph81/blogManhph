@@ -1,0 +1,11 @@
+
+.my-Carousel {
+    width: 100%;
+    height:100px;
+    background: black;
+}
+
+.my-CarouselImage {
+    width: 100%;
+    height:auto; 
+}

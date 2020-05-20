@@ -6,7 +6,7 @@ import LecturersActionPage from './pages/LecturersActionPage/LecturersActionPage
 
 const routes =[
     {
-        path: '/',
+        path: '/home',
         exact: true,
         main: () => <HomePage/>
     },
